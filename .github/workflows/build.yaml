@@ -27,11 +27,12 @@ jobs:
         with:
           directory: kustomize-build/
           framework: kubernetes
+          check: CKV_K8S_17
 
       - name: Install ArgoCD and execute Sync in ArgoCD
         run: |
           curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
           chmod +x /usr/local/bin/argocd
-          ARGO_SERVER=a976ec1eca72140d2a2bacb8a3bc1bbc-272121513.us-east-1.elb.amazonaws.com
-          argocd app sync eksworkshop-cd-pipeline --auth-token ${{ secrets.ARGOCD_TOKEN }} --server a976ec1eca72140d2a2bacb8a3bc1bbc-272121513.us-east-1.elb.amazonaws.com --insecure
+          ARGO_SERVER=
+          argocd app sync eksworkshop-cd-pipeline --auth-token ${{ secrets.ARGOCD_TOKEN }} --server  --insecure
 
